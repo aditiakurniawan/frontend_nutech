@@ -46,7 +46,17 @@ function Home() {
       const response = await API.post("/register", body, config);
       console.log(response);
 
-      if (response.data.status == "success") {
+      if (response?.status === 200) {
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: response.data.data,
+        });
+
+        if (response?.status === 200) {
+          navigate("/login");
+        } else {
+          navigate("/");
+        }
         const alert = (
           <Alert variant="success" className="py-1">
             Success

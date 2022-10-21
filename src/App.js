@@ -14,7 +14,6 @@ import { API, setAuthToken } from "./config/api";
 import Home from "./pages/Home";
 import DataBarang from "./pages/DataBarang";
 import NotFound from "./pages/NotFound";
-import CreateBarang from "./pages/CreateBarang";
 import UpdateBarang from "./pages/UpdateBarang";
 import Login from "./pages/Sign";
 import Sign from "./pages/Sign";
@@ -70,7 +69,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Sign />} />
         <Route path="/data" element={<DataBarang />} />
-        <Route path="/create_barang" element={<CreateBarang />} />
         <Route path="/Update_barang/:id" element={<UpdateBarang />} />
       </Routes>
     </>

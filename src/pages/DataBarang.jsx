@@ -339,12 +339,12 @@ function DataBarang() {
 
   return (
     <>
-      <div className="d-flex justify-content-md-center">
-        <img src={logo} alt="" className="ms-4 mt-4" />
+      <div className="d-flex justify-content-md-start w-50">
+        <img src={logo} alt="" className="ms-4 mt-4 w-25" />
       </div>
-      <div className="d-flex justify-content-md-end">
+      <div className="d-flex justify-content-md-start">
         <Button
-          className="me-5 py-0 mt-4"
+          className="ms-5 py-0 mt-4"
           variant="danger"
           onClick={() => setModalShow(true)}
         >
