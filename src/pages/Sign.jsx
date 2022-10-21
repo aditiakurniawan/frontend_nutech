@@ -85,7 +85,7 @@ function Sign() {
         <div className="homeText w-50 ">
           <Container>
             <Form
-              style={{ margin: "14rem 0 0 6rem", padding: "0 250px 0 0" }}
+              style={{ margin: "8rem 0 0 6rem", padding: "0 250px 0 0" }}
               onSubmit={(e) => {
                 handleSubmit.mutate(e);
               }}
@@ -97,7 +97,6 @@ function Sign() {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
-                  size="lg"
                   type="email"
                   placeholder="Masuk email"
                   name="email"
@@ -109,7 +108,6 @@ function Sign() {
               <Form.Group className="mb-4" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  size="lg"
                   type="password"
                   placeholder="Masukan password"
                   name="password"
@@ -119,7 +117,6 @@ function Sign() {
               </Form.Group>
 
               <Button
-                size="lg"
                 type="submit"
                 style={{ backgroundColor: "#EF4524", border: "none" }}
               >

@@ -87,7 +87,7 @@ function Home() {
         <div className="homeText w-50 ">
           <Container>
             <Form
-              style={{ margin: "14rem 0 0 6rem", padding: "0 250px 0 0" }}
+              style={{ margin: "8rem 0 0 6rem", padding: "0 250px 0 0" }}
               onSubmit={(e) => {
                 handleSubmit.mutate(e);
               }}
@@ -97,7 +97,7 @@ function Home() {
                 {message && message}
                 <Form.Label>Username</Form.Label>
                 <Form.Control
-                  size="lg"
+                  // size="lg"
                   type="text"
                   name="fullName"
                   placeholder="Masukan username"
@@ -108,7 +108,7 @@ function Home() {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
-                  size="lg"
+                  // size="lg"
                   type="email"
                   placeholder="Masukan email"
                   name="email"
@@ -120,7 +120,7 @@ function Home() {
               <Form.Group className="mb-4" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  size="lg"
+                  // size="lg"
                   type="password"
                   placeholder="Masukan password"
                   name="password"
@@ -138,7 +138,7 @@ function Home() {
               </Form.Group>
 
               <Button
-                size="lg"
+                // size="lg"
                 type="submit"
                 style={{ backgroundColor: "#EF4524", border: "none" }}
               >
