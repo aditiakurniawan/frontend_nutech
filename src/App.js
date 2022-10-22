@@ -15,7 +15,7 @@ import Home from "./pages/Home";
 import DataBarang from "./pages/DataBarang";
 import NotFound from "./pages/NotFound";
 import UpdateBarang from "./pages/UpdateBarang";
-import Login from "./pages/Sign";
+import EditData from "./pages/EditData";
 import Sign from "./pages/Sign";
 
 if (localStorage.token) {
@@ -69,6 +69,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Sign />} />
         <Route path="/data" element={<DataBarang />} />
+        <Route path="/edit" element={<EditData />} />
         <Route path="/Update_barang/:id" element={<UpdateBarang />} />
       </Routes>
     </>

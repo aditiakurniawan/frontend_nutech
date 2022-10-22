@@ -340,16 +340,30 @@ function DataBarang() {
   return (
     <>
       <div className="d-flex justify-content-md-start w-50">
-        <img src={logo} alt="" className="ms-4 mt-4 w-25" />
+        <img src={logo} alt="" className="ms-5 mt-4 w-25" />
       </div>
-      <div className="d-flex justify-content-md-start">
+      <div className="d-flex justify-content-md-between">
         <Button
           className="ms-5 py-0 mt-4"
-          variant="danger"
+          style={{
+            backgroundColor: "#EF4524",
+            border: "none",
+          }}
           onClick={() => setModalShow(true)}
         >
           Tambah Barang
         </Button>
+        <Link to="/edit">
+          <Button
+            className="me-5 py-0 mt-4"
+            style={{
+              backgroundColor: "#EF4524",
+              border: "none",
+            }}
+          >
+            Update Barang
+          </Button>
+        </Link>
       </div>
 
       <Add show={modalShow} onHide={() => setModalShow(false)} />

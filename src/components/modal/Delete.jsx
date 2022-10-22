@@ -9,8 +9,8 @@ function Delete({ handleClose, setConfirmDelete, show, setShow }) {
     <>
       <Modal show={show} onHide={() => setShow(false)} animation={false}>
         <Modal.Body className="px-5 ">
-          <p style={{ color: "#469F74" }}>
-            you are sure you want to remove this link
+          <p style={{ color: "#FF0000 " }}>
+            Apakah anda yakin ingin menghapus data ?
           </p>
         </Modal.Body>
         <Row className="px-5 d-flex justify-content-end">
@@ -18,7 +18,7 @@ function Delete({ handleClose, setConfirmDelete, show, setShow }) {
             <Button
               className="px-5 py-0 mb-3"
               style={{
-                backgroundColor: "#FF0000",
+                backgroundColor: "#EF4524",
                 color: "white",
                 border: "none",
               }}
