@@ -26,7 +26,7 @@ function App() {
   let navigate = useNavigate();
   let { id } = useParams();
   const [state, dispatch] = useContext(UserContext);
-  console.clear();
+  // console.clear();
   useEffect(() => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
@@ -70,7 +70,7 @@ function App() {
         <Route path="/login" element={<Sign />} />
         <Route path="/data" element={<DataBarang />} />
         <Route path="/edit" element={<EditData />} />
-        <Route path="/Update_barang/:id" element={<UpdateBarang />} />
+        {/* <Route path="/Update_barang/:id" element={<UpdateBarang />} /> */}
       </Routes>
     </>
   );

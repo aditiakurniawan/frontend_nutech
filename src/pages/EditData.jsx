@@ -10,8 +10,9 @@ import { useQuery } from "react-query";
 import { useMutation } from "react-query";
 import { API } from "../config/api";
 import Delete from "../components/modal/Delete";
-import Edit from "../components/modal/Edit";
 import logo from "../assets/images/Logo.png";
+import ModalEdit from "../components/modal/ModalEdit";
+import TambahData from "../components/modal/TambahData";
 
 function EditData() {
   document.title = `Update Data`;
@@ -25,9 +26,6 @@ function EditData() {
   const handleShow = () => setShow(true);
   const [idEdit, setIdEdit] = useState(null);
   const [confirmEdit, setConfirmEdit] = useState(null);
-  const [shownow, setShownow] = useState(false);
-  const handleClosenow = () => setShownow(false);
-  const handleShownow = () => setShownow(true);
 
   console.log("state", state);
 
@@ -79,33 +77,6 @@ function EditData() {
     }
   }, [confirmDelete]);
 
-  ///////////////
-
-  const handleEdit = (id) => {
-    setIdEdit(id);
-    handleShownow();
-  };
-
-  const editById = async (id) => {
-    try {
-      await API.patch(`/barang/${id}`);
-      refetch();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    if (confirmEdit) {
-      // Close modal confirm delete data
-      handleClose();
-      // execute delete data by id function
-      editById(idEdit);
-      setConfirmEdit(null);
-    }
-  }, [confirmEdit]);
-  ///////////////
-
   let user = useQuery("usersCache", async () => {
     const response = await API.get("/check-auth");
     console.log("ini response user", response);
@@ -117,12 +88,18 @@ function EditData() {
     <>
       <Row>
         <Col>
-          <div className="d-flex justify-content-md-start w-50">
+          <div className="d-flex justify-content-md-start w-50 ms-5">
             <img src={logo} alt="" className="ms-5 mt-4 w-25" />
           </div>
           <Row>
             <Container className="w-100 px-5 py-3 ">
-              <h4 className="ms-3">Data Barang</h4>
+              <h4 className="text-center pb-2">Data Stok Barang</h4>
+              <div className="ms-4 mb-3">
+                <TambahData
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
+              </div>
               {/* <Row xs="auto">
                 <Col></Col> */}
               {/* <Col sm={9}>
@@ -165,8 +142,8 @@ function EditData() {
                       <th>Nama Barang</th>
                       <th width="10%">Harga Beli</th>
                       <th width="10%">Harga Jual</th>
-                      <th width="10%">Stok Barang</th>
-                      <th width="10%">Tool</th>
+                      <th width="6%">Stok</th>
+                      <th width="15%">Tool</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -178,21 +155,42 @@ function EditData() {
                             <img
                               src={item?.foto}
                               alt=""
-                              className="w-100 mt-2"
+                              className="w-100 px-5"
                             />
                           </td>
-                          <td className="align-middle">{item.nama}</td>
-                          <td className="align-middle">Rp.{item.hargabeli}</td>
-                          <td className="align-middle">Rp.{item.hargajual}</td>
-                          <td className="align-middle">{item.stok}</td>
+                          <td className="align-middle">{item?.nama}</td>
+                          <td className="align-middle">Rp.{item?.hargabeli}</td>
+                          <td className="align-middle">Rp.{item?.hargajual}</td>
+                          <td className="align-middle">{item?.stok}</td>
                           <td className="align-middle">
                             <div className="w-100">
-                              {/* <Link to={`/template/${item.id}`}>
-                                <img src={view} alt="" className="w-25 p-2" />
-                              </Link> */}
+                              <Link to={`/template/${item.id}`}>
+                                {/* <img src={view} alt="" className="w-25 p-2" /> */}
+                              </Link>
 
-                              <Link onClick={() => setModalShow(true)}>
-                                <img src={edit} alt="" className="w-50 p-2" />
+                              <Link
+                                onClick={() => setModalShow(true)}
+                                // className="p-5"
+                                style={{
+                                  backgroundColor: "none",
+                                  border: "none",
+                                }}
+                              >
+                                {/* <img src={edit} alt="" className="w-25 p-2" /> */}
+                                <ModalEdit
+                                  id={item?.id}
+                                  foto={item?.foto}
+                                  nama={item.nama}
+                                  hargabeli={item.hargabeli}
+                                  hargajual={item.hargajual}
+                                  stok={item.stok}
+                                  show={modalShow}
+                                  onHide={() => setModalShow(false)}
+                                  style={{
+                                    backgroundColor: "none",
+                                    border: "none",
+                                  }}
+                                />
                               </Link>
 
                               <Link
@@ -203,7 +201,7 @@ function EditData() {
                                 }}
                                 // hidden
                               >
-                                <img src={delet} alt="" className="w-50 p-2" />
+                                <img src={delet} alt="" className="w-25 ms-4" />
                               </Link>
                             </div>
                           </td>
@@ -213,7 +211,8 @@ function EditData() {
                   </tbody>
                 </Table>
               </Container>
-              <Edit show={modalShow} onHide={() => setModalShow(false)} />
+              {/* <Edit show={modalShow} onHide={() => setModalShow(false)} /> */}
+
               <Delete
                 setConfirmDelete={setConfirmDelete}
                 show={show}

@@ -10,7 +10,7 @@ import Delete from "../components/modal/Delete";
 import { Modal, Group } from "@mantine/core";
 import logo from "../assets/images/Logo.png";
 import Tbl from "./Tbl";
-import Add from "../components/modal/Add";
+import TambahData from "../components/modal/TambahData";
 
 function DataBarang() {
   document.title = `My Stock`;
@@ -339,20 +339,12 @@ function DataBarang() {
 
   return (
     <>
-      <div className="d-flex justify-content-md-start w-50">
+      <div className="d-flex justify-content-md-start w-50 ">
         <img src={logo} alt="" className="ms-5 mt-4 w-25" />
       </div>
-      <div className="d-flex justify-content-md-between">
-        <Button
-          className="ms-5 py-0 mt-4"
-          style={{
-            backgroundColor: "#EF4524",
-            border: "none",
-          }}
-          onClick={() => setModalShow(true)}
-        >
-          Tambah Barang
-        </Button>
+      <div className="d-flex justify-content-md-end">
+        {/* <TambahData show={modalShow} onHide={() => setModalShow(false)} /> */}
+
         <Link to="/edit">
           <Button
             className="me-5 py-0 mt-4"
@@ -366,17 +358,16 @@ function DataBarang() {
         </Link>
       </div>
 
-      <Add show={modalShow} onHide={() => setModalShow(false)} />
       {barangs && (
         <Container fluid className="w-100 px-5 py-3">
           <Tbl data={barangs}></Tbl>
-          <Delete
+          {/* <Delete
             setConfirmDelete={setConfirmDelete}
             show={show}
             setShow={setShow}
             handleClose={handleClose}
             handleDelete={handleDelete}
-          />
+          /> */}
         </Container>
       )}
     </>

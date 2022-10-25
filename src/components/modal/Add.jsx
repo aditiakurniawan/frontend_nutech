@@ -12,7 +12,7 @@ import { useMutation } from "react-query";
 import { Navigate, useNavigate } from "react-router";
 import { API } from "../../config/api";
 
-export default function Add(props) {
+export default function Add() {
   document.title = `Tambah Data`;
   const [show, setShow] = useState(false);
 
@@ -20,7 +20,7 @@ export default function Add(props) {
   const handleShow = () => setShow(true);
 
   const navigate = useNavigate();
-  const titlePage = "Create Link";
+
   const [message, setMessage] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -77,10 +77,14 @@ export default function Add(props) {
       formData.set("stok", form?.stok);
 
       const response = await API.post("/barang", formData, config);
-
       console.log(response);
       console.log("ini form", form);
-      handleClose();
+      if (response?.status === 200) {
+        handleClose();
+        navigate("/data");
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
       const alert = (
         <Alert variant="danger" className="py-1">
@@ -97,13 +101,8 @@ export default function Add(props) {
   }, [form.foto]);
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
+    <Modal size="sm" aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
           Tambah Data Barang
         </Modal.Title>
@@ -161,7 +160,13 @@ export default function Add(props) {
               onChange={handleChange}
             />
           </Form.Group>
-          <Button variant="danger" type="submit">
+          <Button
+            variant="danger"
+            type="submit"
+            onClick={() => {
+              handleClose();
+            }}
+          >
             Submit
           </Button>
         </Form>
